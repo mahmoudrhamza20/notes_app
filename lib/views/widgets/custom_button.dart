@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/constants.dart';
 
 class CustomButton extends StatelessWidget {
-  CustomButton({super.key,  this.onTap ,required this.text}) ;
-   void Function()? onTap;
+  CustomButton(
+      {super.key, this.onTap, required this.text, this.isLoading = false});
+
+  void Function()? onTap;
   String text;
+  bool isLoading;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap ,
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           color: kPrimaryColor,
@@ -17,7 +21,17 @@ class CustomButton extends StatelessWidget {
         width: double.infinity,
         height: 40,
         child: Center(
-          child: Text(text,style:const TextStyle(color: Colors.black),),
+          child: isLoading
+              ? const SizedBox(
+                  height: 25,
+                  width: 25,
+                  child: CircularProgressIndicator(
+                    color: Colors.grey,
+                  ))
+              : Text(
+                  text,
+                  style: const TextStyle(color: Colors.black),
+                ),
         ),
       ),
     );

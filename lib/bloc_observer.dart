@@ -14,4 +14,14 @@ class AppBlocObserver extends BlocObserver {
     super.onTransition(bloc, transition);
     debugPrint('transition = $transition');
   }
+
+  @override void onClose(BlocBase bloc) {
+    super.onClose(bloc);
+    debugPrint('close = $bloc');
+  }
+  @override
+  void onCreate(BlocBase bloc) {
+    super.onCreate(bloc);
+    debugPrint('create = $bloc');
+  }
 }
