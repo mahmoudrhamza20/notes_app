@@ -5,26 +5,36 @@ import '../../models/note_model.dart';
 import 'custom_note_item.dart';
 
 class CustomNotesListView extends StatelessWidget {
-  const CustomNotesListView({Key? key,}) : super(key: key);
+  const CustomNotesListView({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NoteCubit, NoteState>(
       builder: (context, state) {
-        List<NoteModel> notes= NoteCubit.get(context).notes!;
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          child: ListView.builder(
-            itemCount: notes.length,
-            padding: EdgeInsets.zero,
-            itemBuilder: (context, index) {
-              return  Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                child: CustomNoteItem(note: notes[index],),
+        List<NoteModel> notes = NoteCubit.get(context).notes!;
+        return notes.isEmpty
+            ? const Center(
+                child: Text(
+                'No Notes please add your note',
+                style: TextStyle(color: Colors.blue,fontSize: 20),
+              ))
+            : Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: ListView.builder(
+                  itemCount: notes.length,
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: CustomNoteItem(
+                        note: notes[index],
+                      ),
+                    );
+                  },
+                ),
               );
-            },
-          ),
-        );
       },
     );
   }
