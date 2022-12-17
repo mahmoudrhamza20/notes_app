@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/cubits/note_cubit/note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'add_colors_list_to_edit_note.dart';
 import 'custom_app_bar.dart';
 import 'custom_text_field.dart';
 
@@ -55,8 +56,14 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
               content = value;
             },
           ),
+          const SizedBox(
+            height: 16,
+          ),
+          EditNoteColorList(note: widget.note,),
         ],
       ),
     ));
   }
 }
+
+
