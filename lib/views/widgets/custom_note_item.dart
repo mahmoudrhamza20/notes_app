@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/cubits/note_cubit/note_cubit.dart';
 import '../../models/note_model.dart';
 import 'edit_note_view_body.dart';
 
@@ -48,6 +49,7 @@ class CustomNoteItem extends StatelessWidget {
                 ),
                 onPressed: () {
                   note.delete();
+                  NoteCubit.get(context).fetchAllNotes();
                 },
               ),
             ),
