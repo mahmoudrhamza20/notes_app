@@ -143,6 +143,7 @@ class _ColorsListViewState extends State<ColorsListView> {
             child: InkWell(
                 onTap: () {
                   currentIndex = index;
+                  AddNoteCubit.get(context).color = colors[index];
                   setState(() {});
                 },
                 child:  ColorItem(
