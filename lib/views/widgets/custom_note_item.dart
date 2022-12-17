@@ -1,43 +1,69 @@
 import 'package:flutter/material.dart';
+import '../../models/note_model.dart';
 import 'edit_note_view_body.dart';
 
 class CustomNoteItem extends StatelessWidget {
-  const CustomNoteItem({Key? key}) : super(key: key);
+  const CustomNoteItem({Key? key, required this.note}) : super(key: key);
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const EditNoteViewBody(),));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const EditNoteViewBody(),
+            ));
       },
       child: Container(
-        padding: const EdgeInsets.only(top: 20,bottom: 20,left: 14),
+        padding: const EdgeInsets.only(top: 20, bottom: 20, left: 14),
         decoration: BoxDecoration(
-          color: Colors.orangeAccent,
+          color: Color(note.color),
           borderRadius: BorderRadius.circular(16),
         ),
-        child:  Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile(
-              title: const Text('Flutter Tips',style: TextStyle(fontSize: 24,color: Colors.black),),
+              title:  Text(
+                note.title,
+                style:const TextStyle(fontSize: 24, color: Colors.black),
+              ),
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 24),
-                child: Text('Build your career with mahmoud reda',style: TextStyle(fontSize: 16,color: Colors.black.withOpacity(.4),),),
+                child: Text(
+                  note.subTitle,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black.withOpacity(.4),
+                  ),
+                ),
               ),
               trailing: IconButton(
-                icon: const Icon(Icons.delete,color: Colors.black,size: 26,),
-                onPressed: () {  },
+                icon: const Icon(
+                  Icons.delete,
+                  color: Colors.black,
+                  size: 26,
+                ),
+                onPressed: () {},
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 24,top: 16,),
-              child: Text('May 21,2022',style: TextStyle(fontSize: 14,color: Colors.black.withOpacity(.4),),),
+              padding: const EdgeInsets.only(
+                right: 24,
+                top: 16,
+              ),
+              child: Text(
+                note.date,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.black.withOpacity(.4),
+                ),
+              ),
             ),
           ],
         ),
-
-
       ),
     );
   }
